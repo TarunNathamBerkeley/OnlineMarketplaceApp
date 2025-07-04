@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		368EB1872E18982700EEDB66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 368EB16E2E18982400EEDB66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 368EB1752E18982400EEDB66;
+			remoteInfo = grace_li_hi_ios;
+		};
+		368EB1912E18982700EEDB66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 368EB16E2E18982400EEDB66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 368EB1752E18982400EEDB66;
+			remoteInfo = grace_li_hi_ios;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grace_li_hi_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		368EB1862E18982700EEDB66 /* grace_li_hi_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grace_li_hi_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		368EB1902E18982700EEDB66 /* grace_li_hi_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grace_li_hi_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		368EB1782E18982400EEDB66 /* grace_li_hi_ios */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = grace_li_hi_ios;
+			sourceTree = "<group>";
+		};
+		368EB1892E18982700EEDB66 /* grace_li_hi_iosTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = grace_li_hi_iosTests;
+			sourceTree = "<group>";
+		};
+		368EB1932E18982700EEDB66 /* grace_li_hi_iosUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = grace_li_hi_iosUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		368EB1732E18982400EEDB66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368EB1832E18982700EEDB66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368EB18D2E18982700EEDB66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		368EB16D2E18982400EEDB66 = {
+			isa = PBXGroup;
+			children = (
+				368EB1782E18982400EEDB66 /* grace_li_hi_ios */,
+				368EB1892E18982700EEDB66 /* grace_li_hi_iosTests */,
+				368EB1932E18982700EEDB66 /* grace_li_hi_iosUITests */,
+				368EB1772E18982400EEDB66 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		368EB1772E18982400EEDB66 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */,
+				368EB1862E18982700EEDB66 /* grace_li_hi_iosTests.xctest */,
+				368EB1902E18982700EEDB66 /* grace_li_hi_iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		368EB1752E18982400EEDB66 /* grace_li_hi_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 368EB19A2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_ios" */;
+			buildPhases = (
+				368EB1722E18982400EEDB66 /* Sources */,
+				368EB1732E18982400EEDB66 /* Frameworks */,
+				368EB1742E18982400EEDB66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				368EB1782E18982400EEDB66 /* grace_li_hi_ios */,
+			);
+			name = grace_li_hi_ios;
+			packageProductDependencies = (
+			);
+			productName = grace_li_hi_ios;
+			productReference = 368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		368EB1852E18982700EEDB66 /* grace_li_hi_iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 368EB19D2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosTests" */;
+			buildPhases = (
+				368EB1822E18982700EEDB66 /* Sources */,
+				368EB1832E18982700EEDB66 /* Frameworks */,
+				368EB1842E18982700EEDB66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				368EB1882E18982700EEDB66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				368EB1892E18982700EEDB66 /* grace_li_hi_iosTests */,
+			);
+			name = grace_li_hi_iosTests;
+			packageProductDependencies = (
+			);
+			productName = grace_li_hi_iosTests;
+			productReference = 368EB1862E18982700EEDB66 /* grace_li_hi_iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		368EB18F2E18982700EEDB66 /* grace_li_hi_iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 368EB1A02E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosUITests" */;
+			buildPhases = (
+				368EB18C2E18982700EEDB66 /* Sources */,
+				368EB18D2E18982700EEDB66 /* Frameworks */,
+				368EB18E2E18982700EEDB66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				368EB1922E18982700EEDB66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				368EB1932E18982700EEDB66 /* grace_li_hi_iosUITests */,
+			);
+			name = grace_li_hi_iosUITests;
+			packageProductDependencies = (
+			);
+			productName = grace_li_hi_iosUITests;
+			productReference = 368EB1902E18982700EEDB66 /* grace_li_hi_iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		368EB16E2E18982400EEDB66 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					368EB1752E18982400EEDB66 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					368EB1852E18982700EEDB66 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 368EB1752E18982400EEDB66;
+					};
+					368EB18F2E18982700EEDB66 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 368EB1752E18982400EEDB66;
+					};
+				};
+			};
+			buildConfigurationList = 368EB1712E18982400EEDB66 /* Build configuration list for PBXProject "grace_li_hi_ios" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 368EB16D2E18982400EEDB66;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 368EB1772E18982400EEDB66 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				368EB1752E18982400EEDB66 /* grace_li_hi_ios */,
+				368EB1852E18982700EEDB66 /* grace_li_hi_iosTests */,
+				368EB18F2E18982700EEDB66 /* grace_li_hi_iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		368EB1742E18982400EEDB66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368EB1842E18982700EEDB66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368EB18E2E18982700EEDB66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		368EB1722E18982400EEDB66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368EB1822E18982700EEDB66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368EB18C2E18982700EEDB66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		368EB1882E18982700EEDB66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 368EB1752E18982400EEDB66 /* grace_li_hi_ios */;
+			targetProxy = 368EB1872E18982700EEDB66 /* PBXContainerItemProxy */;
+		};
+		368EB1922E18982700EEDB66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 368EB1752E18982400EEDB66 /* grace_li_hi_ios */;
+			targetProxy = 368EB1912E18982700EEDB66 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		368EB1982E18982700EEDB66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		368EB1992E18982700EEDB66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		368EB19B2E18982700EEDB66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"grace_li_hi_ios/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "startup.grace-li-hi-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		368EB19C2E18982700EEDB66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"grace_li_hi_ios/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "startup.grace-li-hi-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		368EB19E2E18982700EEDB66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "startup.grace-li-hi-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/grace_li_hi_ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/grace_li_hi_ios";
+			};
+			name = Debug;
+		};
+		368EB19F2E18982700EEDB66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "startup.grace-li-hi-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/grace_li_hi_ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/grace_li_hi_ios";
+			};
+			name = Release;
+		};
+		368EB1A12E18982700EEDB66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "startup.grace-li-hi-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = grace_li_hi_ios;
+			};
+			name = Debug;
+		};
+		368EB1A22E18982700EEDB66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "startup.grace-li-hi-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = grace_li_hi_ios;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		368EB1712E18982400EEDB66 /* Build configuration list for PBXProject "grace_li_hi_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				368EB1982E18982700EEDB66 /* Debug */,
+				368EB1992E18982700EEDB66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		368EB19A2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				368EB19B2E18982700EEDB66 /* Debug */,
+				368EB19C2E18982700EEDB66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		368EB19D2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				368EB19E2E18982700EEDB66 /* Debug */,
+				368EB19F2E18982700EEDB66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		368EB1A02E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				368EB1A12E18982700EEDB66 /* Debug */,
+				368EB1A22E18982700EEDB66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 368EB16E2E18982400EEDB66 /* Project object */;
+}
