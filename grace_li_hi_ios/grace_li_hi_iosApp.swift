@@ -33,8 +33,18 @@ struct grace_li_hi_iosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView(userValidator: userValidator)
-                .environmentObject(authManager)
+            ZStack {
+                if authManager.isSignedIn {
+                    ContentView()
+                        .environmentObject(authManager)
+                        .transition(.opacity)
+                } else {
+                    LoginView(userValidator: userValidator)
+                        .environmentObject(authManager)
+                        .transition(.opacity)
+                }
+            }
+            .animation(.default, value: authManager.isSignedIn)
         }
     }
 }
