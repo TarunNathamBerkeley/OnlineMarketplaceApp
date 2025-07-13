@@ -74,7 +74,6 @@ struct ContentView: View {
                                 }
                                 // can probably clean up these if statements
                                 /* rn the code will rotate through all the colors.
-                                 eventually we 
                                  */
                             }
                     )
