@@ -7,24 +7,33 @@
 
 import SwiftUI
 import FirebaseCore
-
+import GoogleSignIn  // Add this import
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
+    func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
+        FirebaseApp.configure()
+        return true
+    }
+    
+    // ADD THIS METHOD FOR GOOGLE SIGN-IN URL HANDLING
+    func application(_ app: UIApplication,
+                   open url: URL,
+                   options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
+    }
 }
 
 @main
 struct grace_li_hi_iosApp: App {
+    // Register the AppDelegate for Firebase setup
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate  // Add this line
+    
     @State var userValidator = UserValidator()
     
     var body: some Scene {
         WindowGroup {
-            LoginView(userValidator : userValidator)
+            LoginView(userValidator: userValidator)
         }
     }
 }

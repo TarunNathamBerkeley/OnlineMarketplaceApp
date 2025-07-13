@@ -46,6 +46,9 @@ extension View {
 }
 
 struct LoginView: View {
+    @State private var isLoading = false
+    @State private var errorMessage: String?
+    
     @Bindable var userValidator : UserValidator
     
     var body: some View {
@@ -95,14 +98,26 @@ struct LoginView: View {
                                 .cornerRadius(8)
                     
                     
-                    Button {
-                        
-                    } label: {
-                        Image("GoogleLogo")
+                    Button(action: handleGoogleSignIn) {
+                        HStack {
+                            if isLoading {
+                                ProgressView()
+                                    .tint(.black)
+                            } else {
+                                Image("GoogleLogo")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                        Text("Continue with Google")
+                            }
+                            Text("Continue with Google")
+                        }
+                        .disabled(isLoading)
+                        
+                        if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .padding()
+                        }
                     }
                     .foregroundColor(.black)
                                 .frame(maxWidth: .infinity) // fill the button horizontally
@@ -135,6 +150,25 @@ struct LoginView: View {
         }
         .padding()
     }
+    
+    private func handleGoogleSignIn() {
+            Task {
+                isLoading = true
+                errorMessage = nil
+                
+                do {
+                    let result = try await AuthService.shared.signInWithGoogle()
+                    // Handle successful login
+                    print("User signed in: \(result.user.uid)")
+                    // Navigate to home screen or update app state
+                } catch {
+                    errorMessage = error.localizedDescription
+                    print("Google Sign-In failed: \(error)")
+                }
+                
+                isLoading = false
+            }
+        }
 }
 
 #Preview {
