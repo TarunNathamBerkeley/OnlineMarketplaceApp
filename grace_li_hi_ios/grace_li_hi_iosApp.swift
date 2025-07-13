@@ -27,13 +27,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct grace_li_hi_iosApp: App {
     // Register the AppDelegate for Firebase setup
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate  // Add this line
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var authManager = AuthManager()
     @State var userValidator = UserValidator()
     
     var body: some Scene {
         WindowGroup {
             LoginView(userValidator: userValidator)
+                .environmentObject(authManager)
         }
     }
 }

@@ -8,6 +8,8 @@
 
 import FirebaseAuth
 import GoogleSignIn
+import AuthenticationServices
+import CryptoKit
 import SwiftUI
 
 class AuthService {
@@ -41,10 +43,47 @@ class AuthService {
         return try await Auth.auth().signIn(with: credential)
     }
     
-    // Add error handling
-    enum AuthError: Error {
-        case noRootViewController
-        case noIDToken
-        case unknownError
-    }
+    func signInWithApple(idTokenString: String, nonce: String?) async throws -> AuthDataResult {
+            let credential = OAuthProvider.appleCredential(
+                withIDToken: idTokenString,
+                rawNonce: nonce,
+                fullName: nil
+            )
+            return try await Auth.auth().signIn(with: credential)
+        }
+        
+        // Helper for Apple Sign-In
+        func randomNonceString(length: Int = 32) -> String {
+            precondition(length > 0)
+            let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+            var result = ""
+            var remainingLength = length
+            
+            while remainingLength > 0 {
+                let randoms: [UInt8] = (0..<16).map { _ in
+                    var random: UInt8 = 0
+                    let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                    if errorCode != errSecSuccess {
+                        fatalError("Unable to generate nonce. Error: \(errorCode)")
+                    }
+                    return random
+                }
+                
+                randoms.forEach { random in
+                    if remainingLength == 0 { return }
+                    if random < charset.count {
+                        result.append(charset[Int(random)])
+                        remainingLength -= 1
+                    }
+                }
+            }
+            return result
+        }
+        
+        enum AuthError: Error {
+            case noRootViewController
+            case noIDToken
+            case invalidAppleToken
+            case unknownError
+        }
 }

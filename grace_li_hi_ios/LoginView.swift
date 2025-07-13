@@ -8,6 +8,8 @@
 import SwiftUI
 
 import Observation
+import AuthenticationServices
+import CryptoKit
 
 extension View {
     func lightGrayOutline() -> some View {
@@ -48,6 +50,8 @@ extension View {
 struct LoginView: View {
     @State private var isLoading = false
     @State private var errorMessage: String?
+    @EnvironmentObject var authManager: AuthManager
+    @State private var currentNonce: String?
     
     @Bindable var userValidator : UserValidator
     
@@ -126,20 +130,36 @@ struct LoginView: View {
                                 .cornerRadius(8)
                     
                     
-                    Button {
-                        
-                    } label: {
-                        Image("AppleLogo")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                        Text("Continue with Apple")
+                    /* Figure out how AppCheck works, maybe get debug
+                     token or something to prevent the annoying error.
+                     */
+                    SignInWithAppleButton(.signIn) { request in
+                        let nonce = AuthService.shared.randomNonceString()
+                        currentNonce = nonce
+                        request.requestedScopes = [.fullName, .email]
+                        request.nonce = sha256(nonce)
+                    } onCompletion: { result in
+                        Task {
+                            do {
+                                if case .success(let auth) = result,
+                                   let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential,
+                                   let idTokenData = appleIDCredential.identityToken,
+                                   let idTokenString = String(data: idTokenData, encoding: .utf8) {
+                                    
+                                    try await AuthService.shared.signInWithApple(
+                                        idTokenString: idTokenString,
+                                        nonce: currentNonce
+                                    )
+                                    authManager.isSignedIn = true
+                                }
+                            } catch {
+                                print("Apple Sign-In failed: \(error)")
+                            }
+                        }
                     }
-                    .foregroundColor(.black)
-                                .frame(maxWidth: .infinity) // fill the button horizontally
-                                .padding(12) // vertical padding for height
-                                .background(Color(.gray.opacity(0.3))) // dark gray background
-                                .cornerRadius(8)
+                    .signInWithAppleButtonStyle(.black) // or .white
+                    .frame(height: 50)
+                    .cornerRadius(8)
                 }
                 .padding(.horizontal)
             }
@@ -169,9 +189,18 @@ struct LoginView: View {
                 isLoading = false
             }
         }
+    
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        return hashedData.compactMap {
+            String(format: "%02x", $0)
+        }.joined()
+    }
 }
 
 #Preview {
     @Previewable @State var userValidator = UserValidator()
-    LoginView(userValidator : userValidator)
+    LoginView(userValidator: UserValidator())
+            .environmentObject(AuthManager())
 }
