@@ -83,6 +83,8 @@ class AuthService {
         enum AuthError: Error {
             case noRootViewController
             case noIDToken
+            case userCancelledSignIn
+            case appleSignInFailed
             case invalidAppleToken
             case unknownError
         }

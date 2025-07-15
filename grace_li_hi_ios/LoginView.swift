@@ -39,7 +39,7 @@ extension View {
         email.isEmpty || password.count < 8 || !isValidEmail(string : email)
     }
     
-    // need to understand what's happening in this method
+    // Change this to check if valid email or phone number
     func isValidEmail(string : String) -> Bool {
         let emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/
             .ignoresCase()
@@ -49,7 +49,6 @@ extension View {
 
 struct LoginView: View {
     @State private var isLoading = false
-    @State private var errorMessage: String?
     @EnvironmentObject var authManager: AuthManager
     @State private var currentNonce: String?
     
@@ -116,12 +115,6 @@ struct LoginView: View {
                             Text("Continue with Google")
                         }
                         .disabled(isLoading)
-                        
-                        if let errorMessage = errorMessage {
-                            Text(errorMessage)
-                                .foregroundColor(.red)
-                                .padding()
-                        }
                     }
                     .foregroundColor(.black)
                                 .frame(maxWidth: .infinity) // fill the button horizontally
@@ -174,15 +167,14 @@ struct LoginView: View {
     private func handleGoogleSignIn() {
             Task {
                 isLoading = true
-                errorMessage = nil
                 
                 do {
                     let result = try await AuthService.shared.signInWithGoogle()
                     // Handle successful login
                     print("User signed in: \(result.user.uid)")
                     // Navigate to home screen or update app state
+                    
                 } catch {
-                    errorMessage = error.localizedDescription
                     print("Google Sign-In failed: \(error)")
                 }
                 
