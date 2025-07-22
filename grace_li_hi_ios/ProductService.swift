@@ -20,7 +20,7 @@ class ProductService {
     
     private init() {}
     
-    private func addProducts(userId: String, name: String, cost: Double, address: String, videoURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
+    func addProducts(userId: String, name: String, cost: Double, address: String, videoURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
         let userProductsRef = db.collection("users").document(userId).collection("products")
         // 1. Create a unique storage path
         let videoRef = storage.reference()

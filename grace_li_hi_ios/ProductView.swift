@@ -75,7 +75,7 @@ struct ProductView: View {
                     .keyboardType(.decimalPad)
                 }
                 VStack(spacing: 20) {
-                    TextField(text: $productValidator.name) {
+                    TextField(text: $productValidator.address) {
                         Text("Product address")
                             .foregroundColor(Color.gray.opacity(0.8))
                     }
@@ -107,6 +107,7 @@ struct ProductView: View {
                 }
 
                 Button {
+                    submitProduct()
                 } label: {
                     Text("Submit product")
                 }
@@ -130,6 +131,37 @@ struct ProductView: View {
             userEmail = user.email ?? "No email available"
         } else {
             userEmail = "Not signed in"
+        }
+    }
+    private func submitProduct() {
+        guard let videoURL = selectedMediaURL else {
+            print("No video selected")
+            return
+        }
+        
+        guard let cost = Double(productValidator.cost) else {
+            print("Invalid cost")
+            return
+        }
+        
+        guard let user = Auth.auth().currentUser else {
+            print("User not authenticated")
+            return
+        }
+        
+        ProductService.shared.addProducts(
+            userId: user.uid,
+            name: productValidator.name,
+            cost: cost,
+            address: productValidator.address,
+            videoURL: videoURL
+        ) { result in
+            switch result {
+            case .success(let urlString):
+                print("Upload success! URL: \(urlString)")
+            case .failure(let error):
+                print("Upload failed: \(error.localizedDescription)")
+            }
         }
     }
 }
