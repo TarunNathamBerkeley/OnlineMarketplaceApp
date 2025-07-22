@@ -123,7 +123,25 @@ struct ProductView: View {
         }
         .padding()
         .sheet(isPresented: $isShowingPhotoPicker) {
-            PhotoPickerView(image: $selectedUIImage, videoURL: $selectedMediaURL)
+            PhotoPickerView(image: Binding(
+                get: { selectedUIImage },
+                set: { newImage in
+                    // Clear video if image is selected
+                    if newImage != nil {
+                        selectedMediaURL = nil
+                    }
+                    selectedUIImage = newImage
+                }
+            ), videoURL: Binding(
+                get: { selectedMediaURL },
+                set: { newURL in
+                    // Clear image if video is selected
+                    if newURL != nil {
+                        selectedUIImage = nil
+                    }
+                    selectedMediaURL = newURL
+                }
+            ))
         }
     }
     private func loadUserEmail() {

@@ -20,6 +20,31 @@ class ProductService {
     
     private init() {}
     
+    func uploadImage(_ image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
+            guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+                completion(.failure(NSError(domain: "ImageConversion", code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not convert image to JPEG."])))
+                return
+            }
+
+            let filename = UUID().uuidString + ".jpg"
+            let storageRef = storage.reference().child("product_images/\(filename)")
+
+            storageRef.putData(imageData, metadata: nil) { _, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                storageRef.downloadURL { url, error in
+                    if let url = url {
+                        completion(.success(url))
+                    } else if let error = error {
+                        completion(.failure(error))
+                    }
+                }
+            }
+        }
+    
     func addProducts(userId: String, name: String, cost: Double, address: String, videoURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
         let userProductsRef = db.collection("users").document(userId).collection("products")
         // 1. Create a unique storage path
