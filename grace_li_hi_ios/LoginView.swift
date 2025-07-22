@@ -139,10 +139,11 @@ struct LoginView: View {
                                    let idTokenData = appleIDCredential.identityToken,
                                    let idTokenString = String(data: idTokenData, encoding: .utf8) {
                                     
-                                    try await AuthService.shared.signInWithApple(
+                                    let authResult = try await AuthService.shared.signInWithApple(
                                         idTokenString: idTokenString,
                                         nonce: currentNonce
                                     )
+                                    try await AuthService.shared.checkAndHandleNewUser(user: authResult.user)
                                     authManager.isSignedIn = true
                                 }
                             } catch {
@@ -170,8 +171,11 @@ struct LoginView: View {
                 
                 do {
                     let result = try await AuthService.shared.signInWithGoogle()
+                    
+                    try await AuthService.shared.checkAndHandleNewUser(user: result.user)
                     // Handle successful login
                     print("User signed in: \(result.user.uid)")
+                    authManager.isSignedIn = true
                     // Navigate to home screen or update app state
                     
                 } catch {

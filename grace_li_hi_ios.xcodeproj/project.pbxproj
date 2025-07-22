@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3619A3962E27173300072679 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3619A3952E27173300072679 /* FirebaseFirestore */; };
+		3619A3982E27173300072679 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3619A3972E27173300072679 /* FirebaseFirestoreCombine-Community */; };
+		3619A39A2E27173300072679 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3619A3992E27173300072679 /* FirebaseFirestoreSwift */; };
+		368E94882E2DC023002828A4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 368E94872E2DC023002828A4 /* FirebaseStorage */; };
 		36E4989A2E23E38C009F63DF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 36E498992E23E38C009F63DF /* FirebaseAnalytics */; };
 		36E4989C2E23E38C009F63DF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 36E4989B2E23E38C009F63DF /* FirebaseAnalyticsOnDeviceConversion */; };
 		36E4989E2E23E38C009F63DF /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36E4989D2E23E38C009F63DF /* FirebaseAnalyticsSwift */; };
@@ -70,8 +74,12 @@
 				36E4989E2E23E38C009F63DF /* FirebaseAnalyticsSwift in Frameworks */,
 				36E4989A2E23E38C009F63DF /* FirebaseAnalytics in Frameworks */,
 				36E498A72E23E477009F63DF /* GoogleSignInSwift in Frameworks */,
+				3619A3982E27173300072679 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				36E4989C2E23E38C009F63DF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				368E94882E2DC023002828A4 /* FirebaseStorage in Frameworks */,
+				3619A39A2E27173300072679 /* FirebaseFirestoreSwift in Frameworks */,
 				36E498A22E23E38C009F63DF /* FirebaseAppCheck in Frameworks */,
+				3619A3962E27173300072679 /* FirebaseFirestore in Frameworks */,
 				36E498A02E23E38C009F63DF /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				36E498A52E23E477009F63DF /* GoogleSignIn in Frameworks */,
 				36E498C12E23EB45009F63DF /* FirebaseAuth in Frameworks */,
@@ -152,6 +160,10 @@
 				36E498A42E23E477009F63DF /* GoogleSignIn */,
 				36E498A62E23E477009F63DF /* GoogleSignInSwift */,
 				36E498C02E23EB45009F63DF /* FirebaseAuth */,
+				3619A3952E27173300072679 /* FirebaseFirestore */,
+				3619A3972E27173300072679 /* FirebaseFirestoreCombine-Community */,
+				3619A3992E27173300072679 /* FirebaseFirestoreSwift */,
+				368E94872E2DC023002828A4 /* FirebaseStorage */,
 			);
 			productName = grace_li_hi_ios;
 			productReference = 368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */;
@@ -447,6 +459,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "grace-li-hi-ios-Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photos to upload images and videos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -477,6 +490,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "grace-li-hi-ios-Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photos to upload images and videos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -624,6 +638,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3619A3952E27173300072679 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36E498982E23E38C009F63DF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		3619A3972E27173300072679 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36E498982E23E38C009F63DF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		3619A3992E27173300072679 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36E498982E23E38C009F63DF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		368E94872E2DC023002828A4 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36E498982E23E38C009F63DF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		36E498992E23E38C009F63DF /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 36E498982E23E38C009F63DF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

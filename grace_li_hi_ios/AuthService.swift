@@ -10,12 +10,35 @@ import FirebaseAuth
 import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
+import FirebaseFirestore
 import SwiftUI
 
 class AuthService {
     static let shared = AuthService()
+    private let db = Firestore.firestore()
     
     private init() {}
+    
+    func checkAndHandleNewUser(user: FirebaseAuth.User) async throws -> Bool {
+        let userRef = db.collection("users").document(user.uid)
+        let document = try await userRef.getDocument()
+        
+        if !document.exists {
+            try await createNewUser(user: user)
+            return true // Is new user
+        }
+        return false // Existing user
+    }
+    
+    private func createNewUser(user: FirebaseAuth.User) async throws {
+            let userData: [String: Any] = [
+                "uid": user.uid,
+                "email": user.email ?? "",
+                "createdAt": FieldValue.serverTimestamp(),
+                "lastLogin": FieldValue.serverTimestamp()
+            ]
+            try await db.collection("users").document(user.uid).setData(userData)
+        }
     
     func signInWithGoogle() async throws -> AuthDataResult {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -53,39 +76,39 @@ class AuthService {
         }
         
         // Helper for Apple Sign-In
-        func randomNonceString(length: Int = 32) -> String {
-            precondition(length > 0)
-            let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-            var result = ""
-            var remainingLength = length
-            
-            while remainingLength > 0 {
-                let randoms: [UInt8] = (0..<16).map { _ in
-                    var random: UInt8 = 0
-                    let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                    if errorCode != errSecSuccess {
-                        fatalError("Unable to generate nonce. Error: \(errorCode)")
-                    }
-                    return random
+    func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0..<16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. Error: \(errorCode)")
                 }
-                
-                randoms.forEach { random in
-                    if remainingLength == 0 { return }
-                    if random < charset.count {
-                        result.append(charset[Int(random)])
-                        remainingLength -= 1
-                    }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 { return }
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
                 }
             }
-            return result
         }
+        return result
+    }
         
-        enum AuthError: Error {
-            case noRootViewController
-            case noIDToken
-            case userCancelledSignIn
-            case appleSignInFailed
-            case invalidAppleToken
-            case unknownError
-        }
+    enum AuthError: Error {
+        case noRootViewController
+        case noIDToken
+        case userCancelledSignIn
+        case appleSignInFailed
+        case invalidAppleToken
+        case unknownError
+    }
 }
