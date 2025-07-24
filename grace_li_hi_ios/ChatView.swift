@@ -44,6 +44,7 @@ struct ChatView: View {
                                     Spacer()
                                 }
                             }
+                            .padding(.horizontal)
                         }
                     }
                 }
