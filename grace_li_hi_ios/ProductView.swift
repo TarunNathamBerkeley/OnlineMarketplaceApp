@@ -17,7 +17,7 @@ import AVKit
 
 @Observable class ProductValidator {
     var name = ""
-    var cost = ""
+    var cost: Double = 0.0
     var address = ""
     
     var isSubmitButtonDisabled : Bool {
@@ -37,6 +37,7 @@ struct ProductView: View {
     @State private var isShowingPhotoPicker = false
     @State private var selectedMediaURL: URL?
     @State private var selectedUIImage: UIImage?
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
@@ -65,7 +66,9 @@ struct ProductView: View {
                     .autocapitalization(.none)
                 }
                 VStack(spacing: 20) {
-                    TextField(text: $productValidator.cost) {
+                    // Formatting does not work properly for dollars
+                    // NEED TO FIX THIS ASAP
+                    TextField(value: $productValidator.cost, format: .number.precision(.fractionLength(2))) {
                         Text("Product cost")
                             .foregroundColor(Color.gray.opacity(0.8))
                     }
@@ -83,7 +86,6 @@ struct ProductView: View {
                     .autocorrectionDisabled()
                     .autocapitalization(.none)
                 }
-                // Need to add something that requests access to photos when opening this
                 Button("Upload from Photos") {
                     isShowingPhotoPicker = true
                 }
@@ -152,31 +154,32 @@ struct ProductView: View {
         }
     }
     private func submitProduct() {
-        guard let videoURL = selectedMediaURL else {
-            print("No video selected")
-            return
-        }
-        
-        guard let cost = Double(productValidator.cost) else {
-            print("Invalid cost")
-            return
-        }
-        
         guard let user = Auth.auth().currentUser else {
             print("User not authenticated")
             return
         }
-        
-        ProductService.shared.addProducts(
+
+        // Ensure a media file is selected — either image or video
+        guard (selectedMediaURL != nil) != (selectedUIImage != nil) else {
+            print("Please select either a photo or video, not both.")
+            return
+        }
+
+        let cost = productValidator.cost
+
+        ProductService.shared.addProduct(
             userId: user.uid,
             name: productValidator.name,
             cost: cost,
             address: productValidator.address,
-            videoURL: videoURL
+            image: selectedUIImage,
+            videoURL: selectedMediaURL
         ) { result in
             switch result {
             case .success(let urlString):
                 print("Upload success! URL: \(urlString)")
+                // Dismiss view or navigate away after success
+               dismiss()
             case .failure(let error):
                 print("Upload failed: \(error.localizedDescription)")
             }

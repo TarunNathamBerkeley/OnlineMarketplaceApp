@@ -85,6 +85,19 @@ struct ContentView: View {
                                 )
                         }
                         Spacer()
+                        NavigationLink(destination: ConversationsView(currentUserId: Auth.auth().currentUser?.uid ?? "")
+) {
+                            Image(systemName: "message")
+                                .foregroundColor(.black)
+                                .padding(12)
+                                .background(Color.white.opacity(0.7))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                                )
+                        }
+                        Spacer()
                         
                         Button(action: signOut) {
                             Text("Sign Out")
