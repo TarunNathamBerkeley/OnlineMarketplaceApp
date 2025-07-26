@@ -37,7 +37,6 @@ struct ConversationsView: View {
                 chatService.getIdFromEmail(email: recipientEmail) { userId in
                     if let userId = userId {
                         chatService.sendMessage(text: messageText, senderId: currentUserId, recipientId: userId)
-                        // Might be unnecessary, could just try to append given conversation
                         chatService.listenForConversations(currentUserId: currentUserId)
                         messageText = ""
                         // use userId here

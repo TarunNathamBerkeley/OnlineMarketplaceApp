@@ -23,7 +23,7 @@ struct ChatView: View {
                         .font(.headline)
                         .padding(.top)
             
-            VStack {
+            ScrollViewReader { proxy in
                 ScrollView {
                     VStack(alignment: .leading) {
                         ForEach(chatService.messages) { message in
@@ -45,6 +45,14 @@ struct ChatView: View {
                                 }
                             }
                             .padding(.horizontal)
+                            .id(message.id)
+                        }
+                    }
+                }
+                .onChange(of: chatService.messages.map(\.id)) {
+                    if let lastId = chatService.messages.last?.id {
+                        withAnimation {
+                            proxy.scrollTo(lastId, anchor: .bottom)
                         }
                     }
                 }

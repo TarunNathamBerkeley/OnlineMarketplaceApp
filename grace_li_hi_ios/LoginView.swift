@@ -31,6 +31,7 @@ extension View {
     }
 }
 
+// This class is pretty much useless since only Google/Apple sign-in is allowed
 @Observable class UserValidator {
     var email = ""
     var password = ""
@@ -64,6 +65,9 @@ struct LoginView: View {
             Spacer()
             // Pushes everything below down
 
+            /* Need to remove the stuff abt creating account with an email
+             because we're just doing Google/Apple sign-in
+             */
             VStack(spacing: 30) {
                 VStack {
                     Text("Create an account")

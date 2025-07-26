@@ -21,13 +21,7 @@ import AVKit
     var address = ""
     
     var isSubmitButtonDisabled : Bool {
-        false
-    }
-    
-    func isValidValue(string : String) -> Bool {
-        let emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/
-            .ignoresCase()
-        return !string.ranges(of: emailRegex).isEmpty
+        return name.isEmpty || cost == 0.0 || address.isEmpty
     }
 }
 
@@ -113,12 +107,13 @@ struct ProductView: View {
                 } label: {
                     Text("Submit product")
                 }
-                .foregroundColor(.white)
+                .foregroundColor(productValidator.isSubmitButtonDisabled ? .white.opacity(0.7) : .white)
                             .frame(maxWidth: .infinity) // fill the button horizontally
                             .padding(12) // vertical padding for height
-                            .background(Color(.black)) // dark gray background
+                            .background(
+                                        productValidator.isSubmitButtonDisabled ? Color.gray : Color.black) // dark gray background
                             .cornerRadius(8)
-
+                .disabled(productValidator.isSubmitButtonDisabled)
             }
             Spacer()
             Spacer()
