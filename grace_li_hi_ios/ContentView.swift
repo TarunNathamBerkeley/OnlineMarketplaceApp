@@ -43,34 +43,33 @@ struct ContentView: View {
                     .padding()
 
                     // Product + Add to Cart button
-                    if products.indices.contains(currentIndex) {
-                        VStack {
-                            ProductViewCard(product: products[currentIndex])
-                                .gesture(
-                                    DragGesture(minimumDistance: 20)
-                                        .onEnded { value in
-                                            handleSwipe(value)
-                                        }
-                                )
-
-                            Button(action: {
-                                let product = products[currentIndex]
-                                cartManager.addToCart(product)
-                            }) {
-                                Text("Add to Cart")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
-                                    .cornerRadius(12)
-                            }
-                            .padding(.horizontal)
-                            .padding(.top, 8)
-                        }
-                    } else {
+                    if products.isEmpty {
                         ProgressView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        TabView(selection: $currentIndex) {
+                            ForEach(products.indices, id: \.self) { index in
+                                VStack {
+                                    ProductViewCard(product: products[index])
+                                        .tag(index)
+
+                                    Button(action: {
+                                        cartManager.addToCart(products[index])
+                                    }) {
+                                        Text("Add to Cart")
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .frame(maxWidth: .infinity)
+                                            .background(Color.blue)
+                                            .cornerRadius(12)
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.top, 8)
+                                }
+                            }
+                        }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     }
 
                     // Bottom controls
