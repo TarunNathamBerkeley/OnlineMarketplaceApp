@@ -29,6 +29,7 @@ struct grace_li_hi_iosApp: App {
     // Register the AppDelegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authManager = AuthManager()
+    @StateObject var cartManager = CartManager()
     @State var userValidator = UserValidator()
     
     var body: some Scene {
@@ -37,6 +38,7 @@ struct grace_li_hi_iosApp: App {
                 if authManager.isSignedIn {
                     ContentView()
                         .environmentObject(authManager)
+                        .environmentObject(cartManager)
                         .transition(.opacity)
                 } else {
                     LoginView(userValidator: userValidator)

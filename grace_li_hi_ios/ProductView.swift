@@ -6,14 +6,12 @@
 //
 
 import SwiftUI
-
-import SwiftUI
-
 import Observation
 import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
 import AVKit
+import CoreLocation
 
 @Observable class ProductValidator {
     var name = ""
@@ -25,6 +23,20 @@ import AVKit
     }
 }
 
+class AddressValidator {
+    private let geocoder = CLGeocoder()
+    
+    func isValidAddress(_ address: String, completion: @escaping (Bool) -> Void) {
+        geocoder.geocodeAddressString(address) { placemarks, error in
+            if let _ = error {
+                completion(false)
+                return
+            }
+            completion(placemarks?.first != nil)
+        }
+    }
+}
+
 struct ProductView: View {
     @Bindable var productValidator : ProductValidator
     @State private var userEmail = "Loading..."
@@ -32,6 +44,9 @@ struct ProductView: View {
     @State private var selectedMediaURL: URL?
     @State private var selectedUIImage: UIImage?
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var isAddressValid = true
+    private let addressValidator = AddressValidator()
     
     var body: some View {
         VStack {
@@ -154,29 +169,38 @@ struct ProductView: View {
             return
         }
 
-        // Ensure a media file is selected — either image or video
         guard (selectedMediaURL != nil) != (selectedUIImage != nil) else {
             print("Please select either a photo or video, not both.")
             return
         }
 
-        let cost = productValidator.cost
+        // Address validation step
+        addressValidator.isValidAddress(productValidator.address) { isValid in
+            DispatchQueue.main.async {
+                self.isAddressValid = isValid
+                if !isValid {
+                    print("Invalid address. Please enter a real location.")
+                    return
+                }
 
-        ProductService.shared.addProduct(
-            userId: user.uid,
-            name: productValidator.name,
-            cost: cost,
-            address: productValidator.address,
-            image: selectedUIImage,
-            videoURL: selectedMediaURL
-        ) { result in
-            switch result {
-            case .success(let urlString):
-                print("Upload success! URL: \(urlString)")
-                // Dismiss view or navigate away after success
-               dismiss()
-            case .failure(let error):
-                print("Upload failed: \(error.localizedDescription)")
+                let cost = productValidator.cost
+
+                ProductService.shared.addProduct(
+                    userId: user.uid,
+                    name: productValidator.name,
+                    cost: cost,
+                    address: productValidator.address,
+                    image: selectedUIImage,
+                    videoURL: selectedMediaURL
+                ) { result in
+                    switch result {
+                    case .success(let urlString):
+                        print("Upload success! URL: \(urlString)")
+                        dismiss()
+                    case .failure(let error):
+                        print("Upload failed: \(error.localizedDescription)")
+                    }
+                }
             }
         }
     }

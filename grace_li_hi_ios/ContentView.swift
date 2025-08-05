@@ -1,79 +1,83 @@
 import SwiftUI
 import FirebaseAuth
+import AVKit
 
+// Need to make it so that media stops playing when navigating to other views
 struct ContentView: View {
     @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var cartManager: CartManager
+    
     @State private var selectedTab: Tab = .forYou
-    @State private var color1 = 1
-    @State private var color2 = 2
-    @State var productValidator = ProductValidator()
+    @State private var currentIndex = 0
+    @State private var products: [Product] = []
 
     enum Tab {
         case forYou
         case nearMe
     }
 
-    let colors: [Color] = [.red, .blue, .green, .yellow]
-
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                
+
                 VStack(spacing: 0) {
-                    // Tab buttons
+                    // Tabs
                     HStack {
-                        Button(action: {
+                        Button("For You") {
                             selectedTab = .forYou
-                        }) {
-                            Text("For You")
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(selectedTab == .forYou ? Color.gray.opacity(0.3) : Color.clear)
-                                .cornerRadius(8)
                         }
-                        
-                        Button(action: {
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(selectedTab == .forYou ? Color.gray.opacity(0.3) : Color.clear)
+                        .cornerRadius(8)
+
+                        Button("Near Me") {
                             selectedTab = .nearMe
-                        }) {
-                            Text("Near Me")
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(selectedTab == .nearMe ? Color.gray.opacity(0.3) : Color.clear)
-                                .cornerRadius(8)
                         }
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(selectedTab == .nearMe ? Color.gray.opacity(0.3) : Color.clear)
+                        .cornerRadius(8)
                     }
                     .padding()
-                    
-                    // Swipeable content
-                    if selectedTab == .forYou {
-                        Rectangle()
-                            .fill(colors[color1])
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .gesture(
-                                DragGesture(minimumDistance: 20)
-                                    .onEnded { value in
-                                        handleSwipe(value: value, isForYouTab: true)
-                                    }
-                            )
+
+                    // Product + Add to Cart button
+                    if products.indices.contains(currentIndex) {
+                        VStack {
+                            ProductViewCard(product: products[currentIndex])
+                                .gesture(
+                                    DragGesture(minimumDistance: 20)
+                                        .onEnded { value in
+                                            handleSwipe(value)
+                                        }
+                                )
+
+                            Button(action: {
+                                let product = products[currentIndex]
+                                cartManager.addToCart(product)
+                            }) {
+                                Text("Add to Cart")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.blue)
+                                    .cornerRadius(12)
+                            }
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                        }
                     } else {
-                        Rectangle()
-                            .fill(colors[color2])
+                        ProgressView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .gesture(
-                                DragGesture(minimumDistance: 20)
-                                    .onEnded { value in
-                                        handleSwipe(value: value, isForYouTab: false)
-                                    }
-                            )
                     }
-                    
-                    // Bottom bar with Sign Out and "+" button
+
+                    // Bottom controls
                     HStack {
                         Spacer()
-                        // Probably have to change this to something that isnt a NavigationLink
-                        // Maybe have a variable that changes to render a certain view
-                        NavigationLink(destination: ProductView(productValidator: productValidator)) {
+
+                        NavigationLink(destination: ProductView(productValidator: ProductValidator())) {
                             Image(systemName: "plus")
                                 .foregroundColor(.black)
                                 .padding(12)
@@ -84,9 +88,10 @@ struct ContentView: View {
                                         .stroke(Color.white.opacity(0.5), lineWidth: 1)
                                 )
                         }
+
                         Spacer()
-                        NavigationLink(destination: ConversationsView(currentUserId: Auth.auth().currentUser?.uid ?? "")
-) {
+
+                        NavigationLink(destination: ConversationsView(currentUserId: Auth.auth().currentUser?.uid ?? "")) {
                             Image(systemName: "message")
                                 .foregroundColor(.black)
                                 .padding(12)
@@ -97,38 +102,54 @@ struct ContentView: View {
                                         .stroke(Color.white.opacity(0.5), lineWidth: 1)
                                 )
                         }
+
                         Spacer()
                         
-                        Button(action: signOut) {
-                            Text("Sign Out")
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(Color.red.opacity(0.7))
-                                .cornerRadius(8)
+                        // Cart Button
+                        NavigationLink(destination: CartView()
+                            .environmentObject((self.cartManager))) {
+                            Image(systemName: "cart")
+                                .foregroundColor(.black)
+                                .padding(12)
+                                .background(Color.white.opacity(0.7))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                                )
                         }
+
                         Spacer()
-                            .frame(width: 48) // To balance layout since Sign Out isn't centered
+
+                        Button("Sign Out", action: signOut)
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(Color.red.opacity(0.7))
+                            .cornerRadius(8)
+
+                        Spacer().frame(width: 48)
                     }
                     .padding()
                     .background(Color.black)
                 }
             }
+            .onAppear {
+                ProductService.shared.fetchAllProducts { fetched in
+                    self.products = fetched
+                }
+            }
         }
     }
 
-    private func handleSwipe(value: DragGesture.Value, isForYouTab: Bool) {
+    private func handleSwipe(_ value: DragGesture.Value) {
         let verticalAmount = value.translation.height
         if verticalAmount < -30 {
-            if isForYouTab {
-                color1 = (color1 + 1) % colors.count
-            } else {
-                color2 = (color2 + 1) % colors.count
+            if currentIndex < products.count - 1 {
+                currentIndex += 1
             }
         } else if verticalAmount > 30 {
-            if isForYouTab {
-                color1 = (color1 - 1 + colors.count) % colors.count
-            } else {
-                color2 = (color2 - 1 + colors.count) % colors.count
+            if currentIndex > 0 {
+                currentIndex -= 1
             }
         }
     }
@@ -140,9 +161,4 @@ struct ContentView: View {
             print("Error signing out: \(error.localizedDescription)")
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .environmentObject(AuthManager())
 }
