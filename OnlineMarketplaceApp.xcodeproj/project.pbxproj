@@ -42,9 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grace_li_hi_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		368EB1862E18982700EEDB66 /* grace_li_hi_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grace_li_hi_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		368EB1902E18982700EEDB66 /* grace_li_hi_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grace_li_hi_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		368EB1762E18982400EEDB66 /* OnlineMarketplaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineMarketplaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		368EB1862E18982700EEDB66 /* OnlineMarketplaceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnlineMarketplaceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		368EB1902E18982700EEDB66 /* OnlineMarketplaceAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnlineMarketplaceAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E498A82E23E7AB009F63DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,9 +118,9 @@
 		368EB1772E18982400EEDB66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */,
-				368EB1862E18982700EEDB66 /* grace_li_hi_iosTests.xctest */,
-				368EB1902E18982700EEDB66 /* grace_li_hi_iosUITests.xctest */,
+				368EB1762E18982400EEDB66 /* OnlineMarketplaceApp.app */,
+				368EB1862E18982700EEDB66 /* OnlineMarketplaceAppTests.xctest */,
+				368EB1902E18982700EEDB66 /* OnlineMarketplaceAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,9 +135,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		368EB1752E18982400EEDB66 /* grace_li_hi_ios */ = {
+		368EB1752E18982400EEDB66 /* OnlineMarketplaceApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 368EB19A2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_ios" */;
+			buildConfigurationList = 368EB19A2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "OnlineMarketplaceApp" */;
 			buildPhases = (
 				368EB1722E18982400EEDB66 /* Sources */,
 				368EB1732E18982400EEDB66 /* Frameworks */,
@@ -150,7 +150,7 @@
 			fileSystemSynchronizedGroups = (
 				368EB1782E18982400EEDB66 /* grace_li_hi_ios */,
 			);
-			name = grace_li_hi_ios;
+			name = OnlineMarketplaceApp;
 			packageProductDependencies = (
 				36E498992E23E38C009F63DF /* FirebaseAnalytics */,
 				36E4989B2E23E38C009F63DF /* FirebaseAnalyticsOnDeviceConversion */,
@@ -166,12 +166,12 @@
 				368E94872E2DC023002828A4 /* FirebaseStorage */,
 			);
 			productName = grace_li_hi_ios;
-			productReference = 368EB1762E18982400EEDB66 /* grace_li_hi_ios.app */;
+			productReference = 368EB1762E18982400EEDB66 /* OnlineMarketplaceApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		368EB1852E18982700EEDB66 /* grace_li_hi_iosTests */ = {
+		368EB1852E18982700EEDB66 /* OnlineMarketplaceAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 368EB19D2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosTests" */;
+			buildConfigurationList = 368EB19D2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "OnlineMarketplaceAppTests" */;
 			buildPhases = (
 				368EB1822E18982700EEDB66 /* Sources */,
 				368EB1832E18982700EEDB66 /* Frameworks */,
@@ -185,16 +185,16 @@
 			fileSystemSynchronizedGroups = (
 				368EB1892E18982700EEDB66 /* grace_li_hi_iosTests */,
 			);
-			name = grace_li_hi_iosTests;
+			name = OnlineMarketplaceAppTests;
 			packageProductDependencies = (
 			);
 			productName = grace_li_hi_iosTests;
-			productReference = 368EB1862E18982700EEDB66 /* grace_li_hi_iosTests.xctest */;
+			productReference = 368EB1862E18982700EEDB66 /* OnlineMarketplaceAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		368EB18F2E18982700EEDB66 /* grace_li_hi_iosUITests */ = {
+		368EB18F2E18982700EEDB66 /* OnlineMarketplaceAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 368EB1A02E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosUITests" */;
+			buildConfigurationList = 368EB1A02E18982700EEDB66 /* Build configuration list for PBXNativeTarget "OnlineMarketplaceAppUITests" */;
 			buildPhases = (
 				368EB18C2E18982700EEDB66 /* Sources */,
 				368EB18D2E18982700EEDB66 /* Frameworks */,
@@ -208,11 +208,11 @@
 			fileSystemSynchronizedGroups = (
 				368EB1932E18982700EEDB66 /* grace_li_hi_iosUITests */,
 			);
-			name = grace_li_hi_iosUITests;
+			name = OnlineMarketplaceAppUITests;
 			packageProductDependencies = (
 			);
 			productName = grace_li_hi_iosUITests;
-			productReference = 368EB1902E18982700EEDB66 /* grace_li_hi_iosUITests.xctest */;
+			productReference = 368EB1902E18982700EEDB66 /* OnlineMarketplaceAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -238,7 +238,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 368EB1712E18982400EEDB66 /* Build configuration list for PBXProject "grace_li_hi_ios" */;
+			buildConfigurationList = 368EB1712E18982400EEDB66 /* Build configuration list for PBXProject "OnlineMarketplaceApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -256,9 +256,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				368EB1752E18982400EEDB66 /* grace_li_hi_ios */,
-				368EB1852E18982700EEDB66 /* grace_li_hi_iosTests */,
-				368EB18F2E18982700EEDB66 /* grace_li_hi_iosUITests */,
+				368EB1752E18982400EEDB66 /* OnlineMarketplaceApp */,
+				368EB1852E18982700EEDB66 /* OnlineMarketplaceAppTests */,
+				368EB18F2E18982700EEDB66 /* OnlineMarketplaceAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -317,12 +317,12 @@
 /* Begin PBXTargetDependency section */
 		368EB1882E18982700EEDB66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 368EB1752E18982400EEDB66 /* grace_li_hi_ios */;
+			target = 368EB1752E18982400EEDB66 /* OnlineMarketplaceApp */;
 			targetProxy = 368EB1872E18982700EEDB66 /* PBXContainerItemProxy */;
 		};
 		368EB1922E18982700EEDB66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 368EB1752E18982400EEDB66 /* grace_li_hi_ios */;
+			target = 368EB1752E18982400EEDB66 /* OnlineMarketplaceApp */;
 			targetProxy = 368EB1912E18982700EEDB66 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -523,7 +523,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/grace_li_hi_ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/grace_li_hi_ios";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnlineMarketplaceApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnlineMarketplaceApp";
 			};
 			name = Debug;
 		};
@@ -541,7 +541,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/grace_li_hi_ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/grace_li_hi_ios";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnlineMarketplaceApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnlineMarketplaceApp";
 			};
 			name = Release;
 		};
@@ -580,7 +580,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		368EB1712E18982400EEDB66 /* Build configuration list for PBXProject "grace_li_hi_ios" */ = {
+		368EB1712E18982400EEDB66 /* Build configuration list for PBXProject "OnlineMarketplaceApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				368EB1982E18982700EEDB66 /* Debug */,
@@ -589,7 +589,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		368EB19A2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_ios" */ = {
+		368EB19A2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "OnlineMarketplaceApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				368EB19B2E18982700EEDB66 /* Debug */,
@@ -598,7 +598,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		368EB19D2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosTests" */ = {
+		368EB19D2E18982700EEDB66 /* Build configuration list for PBXNativeTarget "OnlineMarketplaceAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				368EB19E2E18982700EEDB66 /* Debug */,
@@ -607,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		368EB1A02E18982700EEDB66 /* Build configuration list for PBXNativeTarget "grace_li_hi_iosUITests" */ = {
+		368EB1A02E18982700EEDB66 /* Build configuration list for PBXNativeTarget "OnlineMarketplaceAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				368EB1A12E18982700EEDB66 /* Debug */,
