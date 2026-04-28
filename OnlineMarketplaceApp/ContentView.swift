@@ -2,14 +2,18 @@ import SwiftUI
 import FirebaseAuth
 import AVKit
 
-// Need to make it so that media stops playing when navigating to other views
 struct ContentView: View {
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var cartManager: CartManager
-    
+
     @State private var selectedTab: Tab = .forYou
     @State private var currentIndex = 0
     @State private var products: [Product] = []
+    @State private var isLoadingFeed = true
+
+    private var currentUserId: String {
+        Auth.auth().currentUser?.uid ?? ""
+    }
 
     enum Tab {
         case forYou
@@ -22,10 +26,10 @@ struct ContentView: View {
                 Color.black.ignoresSafeArea()
 
                 VStack(spacing: 0) {
-                    // Tabs
                     HStack {
                         Button("For You") {
                             selectedTab = .forYou
+                            loadFeed()
                         }
                         .foregroundColor(.white)
                         .padding(8)
@@ -42,16 +46,25 @@ struct ContentView: View {
                     }
                     .padding()
 
-                    // Product + Add to Cart button
-                    if products.isEmpty {
+                    if isLoadingFeed {
+                        Spacer()
                         ProgressView()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .tint(.white)
+                        Spacer()
+                    } else if products.isEmpty {
+                        Spacer()
+                        Text("No products yet")
+                            .foregroundColor(.gray)
+                        Spacer()
                     } else {
                         TabView(selection: $currentIndex) {
                             ForEach(products.indices, id: \.self) { index in
-                                VStack {
-                                    ProductViewCard(product: products[index])
-                                        .tag(index)
+                                VStack(spacing: 0) {
+                                    ProductViewCard(
+                                        product: products[index],
+                                        isActive: index == currentIndex
+                                    )
+                                    .tag(index)
 
                                     Button(action: {
                                         cartManager.addToCart(products[index])
@@ -66,13 +79,21 @@ struct ContentView: View {
                                     }
                                     .padding(.horizontal)
                                     .padding(.top, 8)
+                                    .padding(.bottom, 4)
                                 }
+                                .tag(index)
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .onChange(of: currentIndex) { _, newIndex in
+                            guard newIndex < products.count else { return }
+                            ViewHistoryService.shared.recordView(
+                                userId: currentUserId,
+                                product: products[newIndex]
+                            )
+                        }
                     }
 
-                    // Bottom controls
                     HStack {
                         Spacer()
 
@@ -90,7 +111,9 @@ struct ContentView: View {
 
                         Spacer()
 
-                        NavigationLink(destination: ConversationsView(currentUserId: Auth.auth().currentUser?.uid ?? "")) {
+                        NavigationLink(
+                            destination: ConversationsView(currentUserId: currentUserId)
+                        ) {
                             Image(systemName: "message")
                                 .foregroundColor(.black)
                                 .padding(12)
@@ -103,19 +126,29 @@ struct ContentView: View {
                         }
 
                         Spacer()
-                        
-                        // Cart Button
-                        NavigationLink(destination: CartView()
-                            .environmentObject((self.cartManager))) {
-                            Image(systemName: "cart")
-                                .foregroundColor(.black)
-                                .padding(12)
-                                .background(Color.white.opacity(0.7))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.white.opacity(0.5), lineWidth: 1)
-                                )
+
+                        NavigationLink(destination: CartView().environmentObject(cartManager)) {
+                            ZStack(alignment: .topTrailing) {
+                                Image(systemName: "cart")
+                                    .foregroundColor(.black)
+                                    .padding(12)
+                                    .background(Color.white.opacity(0.7))
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                                    )
+                                if !cartManager.items.isEmpty {
+                                    Text("\(cartManager.items.count)")
+                                        .font(.caption2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.white)
+                                        .frame(width: 16, height: 16)
+                                        .background(Color.red)
+                                        .clipShape(Circle())
+                                        .offset(x: 4, y: -4)
+                                }
+                            }
                         }
 
                         Spacer()
@@ -126,29 +159,46 @@ struct ContentView: View {
                             .background(Color.red.opacity(0.7))
                             .cornerRadius(8)
 
-                        Spacer().frame(width: 48)
+                        Spacer().frame(width: 8)
                     }
-                    .padding()
+                    .padding(.vertical, 8)
                     .background(Color.black)
                 }
             }
             .onAppear {
-                ProductService.shared.fetchAllProducts { fetched in
-                    self.products = fetched
-                }
+                loadFeed()
             }
         }
     }
 
-    private func handleSwipe(_ value: DragGesture.Value) {
-        let verticalAmount = value.translation.height
-        if verticalAmount < -30 {
-            if currentIndex < products.count - 1 {
-                currentIndex += 1
+    private func loadFeed() {
+        isLoadingFeed = true
+        currentIndex = 0
+
+        guard !currentUserId.isEmpty else {
+            ProductService.shared.fetchAllProducts { fetched in
+                self.products = fetched
+                self.isLoadingFeed = false
             }
-        } else if verticalAmount > 30 {
-            if currentIndex > 0 {
-                currentIndex -= 1
+            return
+        }
+
+        RecommendationService.shared.fetchRecommendedFeed(userId: currentUserId) { ranked in
+            if ranked.isEmpty {
+                ProductService.shared.fetchAllProducts { fetched in
+                    self.products = fetched
+                    self.isLoadingFeed = false
+                }
+            } else {
+                self.products = ranked
+                self.isLoadingFeed = false
+
+                if let first = ranked.first {
+                    ViewHistoryService.shared.recordView(
+                        userId: self.currentUserId,
+                        product: first
+                    )
+                }
             }
         }
     }
