@@ -4,14 +4,14 @@ import FirebaseFirestore
 
 struct ProductViewCard: View {
     let product: Product
+    var isActive: Bool = true
     @State private var sellerEmail: String = ""
 
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .bottomLeading) {
-                // Media
                 if product.mediaType == "video", let url = URL(string: product.mediaURL) {
-                    LoopingVideoPlayer(videoURL: url)
+                    LoopingVideoPlayer(videoURL: url, isPlaying: isActive)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .clipped()
                 } else if let url = URL(string: product.mediaURL) {
@@ -28,7 +28,6 @@ struct ProductViewCard: View {
                     Color.gray
                 }
 
-                // Overlay with product info
                 VStack(alignment: .leading, spacing: 8) {
                     Text(product.name)
                         .font(.title2)
@@ -65,7 +64,7 @@ struct ProductViewCard: View {
 
     private func fetchSellerEmail() {
         let db = Firestore.firestore()
-        db.collection("users").document(product.ownerId).getDocument { snapshot, error in
+        db.collection("users").document(product.ownerId).getDocument { snapshot, _ in
             if let data = snapshot?.data(), let email = data["email"] as? String {
                 sellerEmail = email
             }
