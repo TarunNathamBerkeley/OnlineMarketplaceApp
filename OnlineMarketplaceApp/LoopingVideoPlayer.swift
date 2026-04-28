@@ -1,32 +1,37 @@
-//
-//  LoopingVideoPlayer.swift
-//  grace_li_hi_ios
-//
-//  Created by Tarun Natham 2 on 8/3/25.
-//
-
-
 import SwiftUI
 import AVKit
 
 struct LoopingVideoPlayer: UIViewControllerRepresentable {
     let videoURL: URL
+    var isPlaying: Bool = true
 
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let player = AVQueuePlayer()
-        let playerViewController = AVPlayerViewController()
         let item = AVPlayerItem(url: videoURL)
         let looper = AVPlayerLooper(player: player, templateItem: item)
 
-        playerViewController.player = player
-        playerViewController.showsPlaybackControls = false
-        player.play()
-        
-        context.coordinator.looper = looper  // Keep looper alive
-        return playerViewController
+        let vc = AVPlayerViewController()
+        vc.player = player
+        vc.showsPlaybackControls = false
+        vc.videoGravity = .resizeAspectFill
+
+        context.coordinator.player = player
+        context.coordinator.looper = looper
+
+        if isPlaying {
+            player.play()
+        }
+
+        return vc
     }
 
-    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) { }
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+        if isPlaying {
+            context.coordinator.player?.play()
+        } else {
+            context.coordinator.player?.pause()
+        }
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator()
@@ -34,5 +39,6 @@ struct LoopingVideoPlayer: UIViewControllerRepresentable {
 
     class Coordinator {
         var looper: AVPlayerLooper?
+        var player: AVQueuePlayer?
     }
 }
